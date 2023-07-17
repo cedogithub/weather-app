@@ -1,6 +1,6 @@
-# Weather App / Application Météo
+# WeatherNow / Application Météo
 
-The Weather App is a simple web application that allows users to fetch and display the current weather information for a specific location. / L'application Météo est une application web simple qui permet aux utilisateurs de récupérer et d'afficher les informations météorologiques actuelles pour un emplacement spécifique.
+The is a simple web application that allows users to fetch and display the current weather information for a specific location. / L'application Météo est une application web simple qui permet aux utilisateurs de récupérer et d'afficher les informations météorologiques actuelles pour un emplacement spécifique.
 
 ![libraryvid](https://github.com/cedogithub/weather-app/assets/39746523/996637b8-6219-4631-9faf-0f9ec9738cd2)
 
@@ -11,7 +11,7 @@ The Weather App is a simple web application that allows users to fetch and displ
 - Supports a default location (Paris) that is displayed when the page loads / Prend en charge un emplacement par défaut (Paris) qui est affiché lorsque la page se charge
 
 ## Technologies Used / Technologies utilisées
-
+- WEATHER-API
 - HTML
 - CSS
 - JavaScript
