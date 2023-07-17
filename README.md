@@ -1,6 +1,7 @@
 # WeatherNow / Application Météo
 
 The is a simple web application that allows users to fetch and display the current weather information for a specific location. / L'application Météo est une application web simple qui permet aux utilisateurs de récupérer et d'afficher les informations météorologiques actuelles pour un emplacement spécifique.
+
 Link to website : https://cedogithub.github.io/weather-app/
 
 ![weatherapp](https://github.com/cedogithub/weather-app/assets/39746523/588334aa-f3ca-4c5b-985d-84eccf0280bd)
