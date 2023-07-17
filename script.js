@@ -54,30 +54,30 @@ const displayWeatherData = (location) => {
       const cityDiv = createWeatherDiv('weather-data__city', data.location.name);
       const temperatureDiv = createWeatherDiv('weather-data__temperature', `${data.current.temp_c}°C`);
       const humidityDiv = createWeatherDiv('weather-data__humidity');
-      const humidityIconElement = document.createElement('i');
-      humidityIconElement.classList.add('fas', 'fa-droplet');
-      humidityDiv.appendChild(humidityIconElement);
+      const humidityIconEl = document.createElement('i');
+      humidityIconEl.classList.add('fas', 'fa-droplet');
+      humidityDiv.appendChild(humidityIconEl);
       humidityDiv.textContent += ` ${data.current.humidity}%`;
       const currentWeatherDiv = createWeatherDiv('weather-data__current-weather', data.current.condition.text);
       const last_updated = data.current.last_updated;
       const timeString = last_updated.split(' ')[1];
       const updatedAtDiv = createWeatherDiv('weather-data__updated-at', `Updated at: ${timeString}`);
       const windDiv = createWeatherDiv('weather-data__wind');
-      const windIconElement = document.createElement('i');
-      windIconElement.classList.add('fas', 'fa-wind');
-      windDiv.appendChild(windIconElement);
+      const windIconEl = document.createElement('i');
+      windIconEl.classList.add('fas', 'fa-wind');
+      windDiv.appendChild(windIconEl);
       windDiv.textContent += ` ${data.current.wind_kph} km/h ${data.current.wind_dir}`;
 
       // Create the weather icon element
       const weatherIconUrl = data.current.condition.icon;
-      const weatherIconElement = document.createElement('img');
-      weatherIconElement.src = weatherIconUrl;
-      weatherIconElement.classList.add('weather-data__icon');
+      const weatherIconEl = document.createElement('img');
+      weatherIconEl.src = weatherIconUrl;
+      weatherIconEl.classList.add('weather-data__icon');
 
       // Append the weather information elements to the card body div
       cardBodyDiv.appendChild(cityDiv);
       cardBodyDiv.appendChild(updatedAtDiv);
-      cardBodyDiv.appendChild(weatherIconElement); // Add the weather icon element
+      cardBodyDiv.appendChild(weatherIconEl); // Add the weather icon element
       cardBodyDiv.appendChild(temperatureDiv);
       cardBodyDiv.appendChild(currentWeatherDiv);
       cardBodyDiv.appendChild(humidityDiv);
@@ -88,6 +88,20 @@ const displayWeatherData = (location) => {
 
       // Append the card div to the weather data container
       weatherDataContainerEl.appendChild(cardDiv);
+
+      // Trigger the animation using GSAP
+        gsap.fromTo(cardDiv, {
+            opacity: 0,
+            scale: 0.5,
+            transformOrigin: 'bottom',
+        }, {
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: 'power4.out',
+            stagger: 0.2,
+        });
+  
     });
 };
 
@@ -96,7 +110,7 @@ const handleError = (error) => {
   console.error('Error:', error); // Log the error message to the console
 
   // Display an error message in the weather data container
-  weatherDataContainerEl.textContent = 'Error occurred while fetching weather data';
+  weatherDataContainerEl.textContent = 'Error occurred while fetching weather data, check the spelling.';
 };
 
 displayWeatherData(defaultLocation);
