@@ -2,7 +2,7 @@
 const weatherFormElement = document.querySelector('.weather-form');
 const locationInputElement = document.querySelector('.weather-form__input');
 const weatherDataContainerElement = document.querySelector('.weather-data');
-
+const defaultLocation = 'Paris';
 // Add event listener to the weather form when it is submitted
 weatherFormElement.addEventListener('submit', (event) => {
     event.preventDefault(); // Prevent the default form submission and page refresh
@@ -16,40 +16,33 @@ weatherFormElement.addEventListener('submit', (event) => {
 
 // Function to fetch weather data from the API based on the given location and display it
 const displayWeatherData = (location) => {
-    const API_KEY = '3d1853a7fd9b499794571220230607';
+  const API_KEY = '3d1853a7fd9b499794571220230607';
 
-    return fetch(`https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${location}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Unable to fetch weather data');
-            }
-            return response.json(); // Parse the response JSON and return the data
-        })
-        .then(data => {
-            console.log(data.location); // Log the location information to the console
+  return fetch(`https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${location}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Unable to fetch weather data');
+      }
+      return response.json(); // Parse the response JSON and return the data
+    })
+    .then(data => {
+      console.log(data); // Log the location information to the console
+      
+      // Populate the weather data into the HTML elements
+      const cityElement = document.querySelector('.weather-data__city');
+      const currentWeatherElement = document.querySelector('.weather-data__current-weather');
+      const temperatureElement = document.querySelector('.weather-data__temperature');
+      const updatedAtElement = document.querySelector('.weather-data__updated-at');
+      const windElement = document.querySelector('.weather-data__wind');
+      const humidityElement = document.querySelector('.weather-data__humidity');
 
-            // Clear the previous content in the weather data container
-            weatherDataContainerElement.textContent = '';
-            
-            // Display the specific message with temperature information
-                const temperatureMessage = `Current temperature in ${data.location.name} is ${data.current.temp_c}°C`;
-                const temperatureParagraph = document.createElement('p');
-                temperatureParagraph.textContent = temperatureMessage;
-                weatherDataContainerElement.appendChild(temperatureParagraph);
-
-            // Iterate over the object properties using Object.entries()
-            console.log(Object.entries(data.current))
-            Object.entries(data.current).forEach(([key, value]) => {
-                // Create a new paragraph element
-                const paragraphElement = document.createElement('p');
-
-                // Set the content of the paragraph with the key-value pair
-                paragraphElement.textContent = `${key}: ${value}`;
-
-                // Append the paragraph element to the weather data container
-                weatherDataContainerElement.appendChild(paragraphElement);
-            });
-        });
+      cityElement.textContent = data.location.name;
+      currentWeatherElement.textContent = data.current.condition.text;
+      temperatureElement.textContent = `${data.current.temp_c}°C`;
+      updatedAtElement.textContent = `Updated at: ${data.current.last_updated}`;
+      windElement.textContent = `Wind: ${data.current.wind_kph} km/h ${data.current.wind_dir}`;
+      humidityElement.textContent = `Humidity: ${data.current.humidity}%`;
+    });
 };
 
 
@@ -60,3 +53,4 @@ const handleError = (error) => {
     // Display an error message in the weather data container
     weatherDataContainerElement.textContent = 'Error occurred while fetching weather data';
 };
+displayWeatherData(defaultLocation)
