@@ -1,6 +1,7 @@
 # Weather App / Application Météo
 
 The Weather App is a simple web application that allows users to fetch and display the current weather information for a specific location. / L'application Météo est une application web simple qui permet aux utilisateurs de récupérer et d'afficher les informations météorologiques actuelles pour un emplacement spécifique.
+![libraryvid](https://github.com/cedogithub/weather-app/assets/39746523/996637b8-6219-4631-9faf-0f9ec9738cd2)
 
 ## Features / Fonctionnalités
 
