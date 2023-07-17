@@ -10,12 +10,12 @@ weatherFormElement.addEventListener('submit', (event) => {
     const enteredLocation = locationInputElement.value; // Get the value entered in the location input field
 
     // Fetch weather data for the entered location and display it
-    getAndDisplayWeatherData(enteredLocation)
+    displayWeatherData(enteredLocation)
         .catch(handleError); // Handle any errors that occur during the fetch request
 });
 
 // Function to fetch weather data from the API based on the given location and display it
-const getAndDisplayWeatherData = (location) => {
+const displayWeatherData = (location) => {
     const API_KEY = '3d1853a7fd9b499794571220230607';
 
     return fetch(`https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${location}`)
@@ -28,10 +28,30 @@ const getAndDisplayWeatherData = (location) => {
         .then(data => {
             console.log(data.location); // Log the location information to the console
 
-            // Update the weather data container with the temperature information
-            weatherDataContainerElement.textContent = `Current temperature in ${data.location.name} is ${data.current.temp_c}°C`;
+            // Clear the previous content in the weather data container
+            weatherDataContainerElement.textContent = '';
+            
+            // Display the specific message with temperature information
+                const temperatureMessage = `Current temperature in ${data.location.name} is ${data.current.temp_c}°C`;
+                const temperatureParagraph = document.createElement('p');
+                temperatureParagraph.textContent = temperatureMessage;
+                weatherDataContainerElement.appendChild(temperatureParagraph);
+
+            // Iterate over the object properties using Object.entries()
+            console.log(Object.entries(data.current))
+            Object.entries(data.current).forEach(([key, value]) => {
+                // Create a new paragraph element
+                const paragraphElement = document.createElement('p');
+
+                // Set the content of the paragraph with the key-value pair
+                paragraphElement.textContent = `${key}: ${value}`;
+
+                // Append the paragraph element to the weather data container
+                weatherDataContainerElement.appendChild(paragraphElement);
+            });
         });
 };
+
 
 // Function to handle errors that occur during the fetch request
 const handleError = (error) => {
