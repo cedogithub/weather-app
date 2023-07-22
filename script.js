@@ -57,10 +57,6 @@ const displayWeatherData = (location) => {
         "weather-data__city",
         data.location.name
       );
-      const temperatureDiv = createWeatherDiv(
-        "weather-data__temperature",
-        `${data.current.temp_c}°C`
-      );
       const humidityDiv = createWeatherDiv("weather-data__humidity");
       humidityDiv.innerHTML = `<i class="fas fa-droplet"></i> ${data.current.humidity}%`;
       const currentWeatherDiv = createWeatherDiv(
@@ -76,17 +72,33 @@ const displayWeatherData = (location) => {
       const windDiv = createWeatherDiv("weather-data__wind");
       windDiv.innerHTML = `<i class="fas fa-wind"></i> ${data.current.wind_kph} km/h ${data.current.wind_dir}`;
 
+      // Create two separate temperature divs for Celsius and Fahrenheit
+      const temperatureDivC = createWeatherDiv(
+        "weather-data__temperature",
+        `${data.current.temp_c}°C`
+      );
+      const temperatureDivF = createWeatherDiv(
+        "weather-data__temperature",
+        `${data.current.temp_f}°F`
+      );
+      // Initially hide the Fahrenheit temperature div
+      temperatureDivF.style.display = "none";
+
+      // Append the temperature divs to the card body div
+
       // Create the weather icon element
       const weatherIconUrl = data.current.condition.icon;
       const weatherIconEl = document.createElement("img");
       weatherIconEl.src = weatherIconUrl;
+      weatherIconEl.style.width = "90px";
       weatherIconEl.classList.add("weather-data__icon");
 
       // Append the weather information elements to the card body div
       cardBodyDiv.appendChild(cityDiv);
       cardBodyDiv.appendChild(updatedAtDiv);
       cardBodyDiv.appendChild(weatherIconEl); // Add the weather icon element
-      cardBodyDiv.appendChild(temperatureDiv);
+      cardBodyDiv.appendChild(temperatureDivC);
+      cardBodyDiv.appendChild(temperatureDivF);
       cardBodyDiv.appendChild(currentWeatherDiv);
       cardBodyDiv.appendChild(humidityDiv);
       cardBodyDiv.appendChild(windDiv);
@@ -113,6 +125,18 @@ const displayWeatherData = (location) => {
           stagger: 0.2,
         }
       );
+
+      // Add event listener to the toggle button
+      const toggleCheckbox = document.getElementById("check");
+      toggleCheckbox.addEventListener("change", () => {
+        // Toggle the display of Celsius and Fahrenheit temperature divs
+        temperatureDivC.style.display = toggleCheckbox.checked
+          ? "none"
+          : "block";
+        temperatureDivF.style.display = toggleCheckbox.checked
+          ? "block"
+          : "none";
+      });
     });
 };
 

@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/345736990a.js" crossorigin="anonymous"></script>
     <script defer src="script.js"></script>
+    <script src="https://kit.fontawesome.com/345736990a.js" crossorigin="anonymous"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 
 </head>
@@ -14,13 +14,27 @@
     <nav>
         <h1 class="weather-app__title">WeatherNow <i class="fa-solid fa-cloud-sun"></i> </h1>
     </nav>
-    
+
     <form id="weatherForm" class="weather-form">
-        <input type="text" class="weather-form__input" placeholder="Enter your city">
+        <input type="text" class="weather-form__input" placeholder="Enter your city!">
         <button type="submit" class="weather-form__submit">Search</button>
     </form>
-    
+   
+  </div>
+  <div class="weather-data-container">
     <div class="weather-data"></div>
+    <div class="toggle-container">
+      <input hidden id="check" name="check" type="checkbox">
+      <label class="toggle" for="check">
+        <div class="toggle__circle"></div>
+      </label>
+      <div class="toggle-text">
+        <span>F°</span>
+        <span>C°</span>
+      </div>
+    </div>
+  </div>
+  
         <footer>
             <p>Cedogithub copyright © 2023 - Click to see the code</p><i class="fa-solid fa-arrow-right"></i>
             <a href="https://github.com/cedogithub/weather-app" target="_blank">
