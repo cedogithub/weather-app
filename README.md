@@ -2,7 +2,10 @@
 
 The is a simple web application that allows users to fetch and display the current weather information for a specific location. / L'application Météo est une application web simple qui permet aux utilisateurs de récupérer et d'afficher les informations météorologiques actuelles pour un emplacement spécifique.
 
-![libraryvid](https://github.com/cedogithub/weather-app/assets/39746523/996637b8-6219-4631-9faf-0f9ec9738cd2)
+Link to website : https://cedogithub.github.io/weather-app/
+
+![weatherapp](https://github.com/cedogithub/weather-app/assets/39746523/588334aa-f3ca-4c5b-985d-84eccf0280bd)
+
 
 ## Features / Fonctionnalités
 
@@ -14,3 +17,4 @@ The is a simple web application that allows users to fetch and display the curre
 - HTML
 - CSS
 - JavaScript
+- GSAP
